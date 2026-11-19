@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10111a"><meta name="description" content="Threads Video Studio PRO - tạo video dọc từ nội dung Threads">
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css">
+<title>Threads Video Studio PRO</title>
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">T</div><div><b>THREADS STUDIO</b><small>VIDEO CREATOR PRO</small></div></div>
+  <button class="icon-btn" id="installBtn" hidden title="Cài ứng dụng">⇩</button>
+  <div class="status"><i></i> LOCAL STUDIO</div>
+</header>
+<main>
+<section class="hero">
+  <div><span class="eyebrow">CREATE • EDIT • EXPORT</span><h1>Biến nội dung thành<br><em>video cuốn hút.</em></h1>
+  <p>Tạo video ngắn từ bài viết Threads ngay trên trình duyệt. Không cần cài phần mềm máy tính.</p></div>
+  <div class="hero-orb">▶</div>
+</section>
+<div class="workspace">
+<section class="panel editor">
+  <div class="section-head"><div><span class="step">01</span><h2>Nội dung video</h2></div><span class="tag">SCRIPT</span></div>
+  <label for="threadUrl">Liên kết bài viết Threads <small>(tùy chọn)</small></label>
+  <div class="url-row"><input id="threadUrl" type="url" placeholder="https://www.threads.net/@.../post/..."><button id="openThread" class="secondary">Mở ↗</button></div>
+  <p class="hint">Trang web không tự vượt đăng nhập hoặc giới hạn của Threads. Nếu không lấy được bài viết, hãy dán nội dung bên dưới.</p>
+  <label for="script">Kịch bản / nội dung đọc</label>
+  <textarea id="script" rows="7" placeholder="Dán nội dung bài viết của bạn tại đây..."></textarea>
+  <div class="row-between"><span id="wordCount" class="hint">0 từ</span><button id="cleanText" class="text-btn">Làm sạch văn bản</button></div>
+  <div class="section-head subhead"><div><span class="step">02</span><h2>Hình ảnh & âm thanh</h2></div></div>
+  <div class="upload-grid">
+    <label class="upload-card"><span class="upload-icon">▧</span><b>Video nền</b><small id="videoName">Chọn từ điện thoại</small><input id="bgVideo" type="file" accept="video/*"></label>
+    <label class="upload-card"><span class="upload-icon">♫</span><b>Nhạc / giọng đọc</b><small id="audioName">Tải file âm thanh</small><input id="bgAudio" type="file" accept="audio/*"></label>
+  </div>
+  <div class="section-head subhead"><div><span class="step">03</span><h2>Thiết lập video</h2></div></div>
+  <div class="settings-grid">
+    <div><label for="ratio">Tỷ lệ khung hình</label><select id="ratio"><option value="9:16">9:16 · TikTok / Reels</option><option value="1:1">1:1 · Vuông</option><option value="16:9">16:9 · YouTube</option></select></div>
+    <div><label for="resolution">Độ phân giải</label><select id="resolution"><option value="720">720p · Nhẹ hơn</option><option value="1080" selected>1080p · Full HD</option></select></div>
+    <div><label for="fontSize">Cỡ phụ đề</label><select id="fontSize"><option value="30">Nhỏ</option><option value="40" selected>Vừa</option><option value="52">Lớn</option></select></div>
+    <div><label for="voice">Giọng đọc thử</label><select id="voice"><option value="">Mặc định thiết bị</option></select></div>
+  </div>
+  <div class="toggle-row"><div><b>Hiển thị phụ đề</b><small>Chữ trên video, chia theo câu</small></div><label class="switch"><input id="captions" type="checkbox" checked><span></span></label></div>
+  <div class="toggle-row"><div><b>Đọc thử nội dung</b><small>Dùng giọng đọc có sẵn của trình duyệt</small></div><button id="speak" class="secondary">▶ Nghe thử</button></div>
+  <div class="actions"><button id="previewBtn" class="secondary wide">Xem trước</button><button id="renderBtn" class="primary wide">TẠO VIDEO <span>↗</span></button></div>
+  <div id="progressWrap" hidden><div class="progress-label"><span id="progressText">Đang chuẩn bị...</span><b id="progressPct">0%</b></div><div class="progress"><i id="progressBar"></i></div></div>
+  <p id="message" class="message" role="status">Mẹo: chọn video nền và nhập nội dung để bắt đầu.</p>
+</section>
+<aside class="preview-column">
+  <div class="preview-head"><div><span class="step">LIVE PREVIEW</span><h2>Bản xem trước</h2></div><span class="tag">9:16</span></div>
+  <div class="phone-frame" id="phoneFrame"><video id="videoPreview" playsinline muted loop></video><div class="preview-shade"></div><div class="preview-content"><div class="preview-label">THREADS STORY</div><div id="previewText">Nội dung video của bạn sẽ xuất hiện tại đây.</div><div class="preview-caption" id="previewCaption">Phụ đề sẽ hiển thị ở đây</div></div><div class="play-hint">PREVIEW</div></div>
+  <div class="preview-controls"><button id="playPreview" class="secondary">▶ Phát nền</button><button id="stopPreview" class="secondary">■ Dừng</button></div>
+  <div class="info-card"><b>✦ Xuất video ngay trên thiết bị</b><p>Bản MVP dùng khả năng ghi hình của trình duyệt. Tốc độ và độ phân giải phụ thuộc điện thoại; giữ trang mở trong lúc xuất.</p></div>
+  <div class="info-card subtle-card"><b>Đang phát triển</b><p>Tự lấy nội dung Threads, TTS xuất thành audio, timeline nhiều lớp và lưu dự án đám mây cần backend/API riêng.</p></div>
+</aside>
+</div>
+<section class="bottom-note"><span>THREADS VIDEO STUDIO PRO</span><span>Designed for mobile · v1.0 MVP</span></section>
+</main>
+</div>
+<script src="app.js"></script>
+</body></html>

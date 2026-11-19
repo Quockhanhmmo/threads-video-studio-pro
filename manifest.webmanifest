@@ -1,0 +1,9 @@
+{
+  "name": "Threads Video Studio PRO",
+  "short_name": "Threads Studio",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0c0d13",
+  "theme_color": "#10111a",
+  "description": "Tạo video ngắn từ nội dung Threads"
+}
